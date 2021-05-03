@@ -139,14 +139,141 @@ There are two steps:
        select count(*) from metahtml;
        ```
 
+       ```
+        count
+       --------
+        226774
+       (1 row)
+       ```
+
     1. This query shows the number of webpages loaded / hour:
        ```
        select * from metahtml_rollup_insert order by insert_hour desc limit 100;
        ```
 
+       ```
+        hll_count |  url  | hostpathquery | hostpath | host  |      insert_hour       
+       -----------+-------+---------------+----------+-------+------------------------
+                5 |  2382 |          2405 |     2071 |     5 | 2021-05-03 16:00:00+00
+                5 | 29066 |         28568 |    21744 |     5 | 2021-05-03 15:00:00+00
+                5 | 29061 |         30155 |    22948 |     5 | 2021-05-03 14:00:00+00
+                5 | 30016 |         28893 |    22722 |     5 | 2021-05-03 13:00:00+00
+                5 | 30478 |         29822 |    23129 |     5 | 2021-05-03 12:00:00+00
+                5 |  6910 |          7075 |     6429 |     5 | 2021-05-03 11:00:00+00
+                1 | 25938 |         26327 |    25676 | 22399 | 2021-05-02 22:00:00+00
+                3 | 56530 |         59380 |    50985 | 32086 | 2021-05-02 21:00:00+00
+       (8 rows)
+       ```
+
     1. This query shows the hostnames that you have downloaded the most webpages from:
        ```
        select * from metahtml_rollup_host order by hostpath desc limit 100;
+       ```
+
+       ```
+         url  | hostpathquery | hostpath |            host            
+       -------+---------------+----------+----------------------------
+        27239 |         25569 |    25572 | uk,co,bbc)
+        21882 |         22016 |    22016 | com,worldatlas)
+        19090 |         18721 |    18721 | com,21stcenturywire)
+         4754 |          4837 |     4827 | net,earthreview)
+        29274 |         29062 |      918 | au,com,sbs)
+           47 |            47 |       40 | com,atgstores)
+           32 |            32 |       32 | com,agoda)
+           36 |            36 |       30 | com,mlb)
+           30 |            30 |       30 | com,scribd)
+           29 |            29 |       29 | org,wikipedia,en)
+           30 |            30 |       29 | com,go,espn)
+           29 |            29 |       29 | com,theguardian)
+           32 |            32 |       29 | com,cengage,community)
+           27 |            27 |       27 | org,wikipedia,de)
+           27 |            27 |       27 | com,dollartree)
+           27 |            27 |       27 | id,co,tripadvisor)
+           27 |            27 |       27 | org,worldcat)
+           25 |            25 |       25 | com,landsend)
+           26 |            26 |       25 | com,google)
+           24 |            24 |       24 | com,thefind)
+           24 |            24 |       24 | com,pandora)
+           24 |            24 |       24 | com,newsok)
+           24 |            24 |       24 | com,reddit)
+           23 |            23 |       23 | com,packersproshop)
+           23 |            23 |       23 | com,fanatics)
+           23 |            23 |       23 | com,6pm)
+           23 |            23 |       23 | kr,co,tripadvisor)
+           22 |            22 |       22 | es,tripadvisor)
+           22 |            22 |       22 | com,weather)
+           22 |            22 |       22 | com,sports-reference)
+           22 |            22 |       22 | com,gilt)
+           21 |            21 |       21 | com,beeradvocate)
+           21 |            21 |       21 | com,streetsideauto)
+           22 |            22 |       21 | com,weatherbug,weather)
+           21 |            21 |       21 | com,tampabay)
+           22 |            22 |       21 | com,dpreview)
+           21 |            21 |       21 | com,stackoverflow)
+           20 |            20 |       20 | com,bloomberg)
+           20 |            20 |       20 | com,imdb)
+           20 |            20 |       20 | com,oxforddictionaries)
+           20 |            20 |       20 | gov,clinicaltrials)
+           20 |            20 |       20 | com,northerntool)
+           26 |            26 |       20 | com,cnet)
+           20 |            20 |       20 | com,wsj,online)
+           19 |            19 |       19 | br,com,tripadvisor)
+           19 |            19 |       19 | com,vimeo)
+           19 |            19 |       19 | mx,com,tripadvisor)
+           19 |            19 |       19 | com,utsandiego)
+           19 |            19 |       19 | com,boston)
+           19 |            19 |       19 | dk,tripadvisor)
+           19 |            19 |       19 | com,oracle,docs)
+           19 |            19 |       19 | com,dreamstime)
+           19 |            19 |       19 | com,tv)
+           23 |            23 |       19 | com,whitepages)
+           18 |            18 |       18 | com,moultrienews)
+           18 |            18 |       18 | org,faqs)
+           18 |            18 |       18 | org,metoperashop)
+           18 |            18 |       18 | ve,com,tripadvisor)
+           19 |            19 |       18 | org,marylandpublicschools)
+           18 |            18 |       18 | org,eol)
+           18 |            18 |       18 | com,businessinsider)
+           18 |            18 |       18 | com,ign)
+           18 |            18 |       18 | com,scrapbook,store)
+           18 |            18 |       18 | com,123rf)
+           18 |            18 |       18 | com,appszoom)
+           18 |            18 |       18 | com,tripadvisor,pl)
+           18 |            18 |       18 | com,wsj,blogs)
+           18 |            18 |       18 | com,modelmayhem)
+           18 |            18 |       18 | uk,co,theregister)
+           17 |            17 |       17 | it,tripadvisor)
+           17 |            17 |       17 | ar,com,tripadvisor)
+           17 |            17 |       17 | edu,cornell,law)
+           27 |            27 |       17 | com,nytimes)
+           17 |            17 |       17 | nl,tripadvisor)
+           17 |            17 |       17 | com,champssports)
+           17 |            17 |       17 | com,the-house)
+           22 |            22 |       17 | com,yardbarker)
+           17 |            17 |       17 | com,bleacherreport)
+           17 |            17 |       17 | com,myfitnesspal)
+           20 |            20 |       17 | com,musicnotes)
+           17 |            17 |       17 | com,britannica)
+           17 |            17 |       17 | org,wikidata)
+           17 |            17 |       17 | com,loft)
+           16 |            16 |       16 | se,tripadvisor)
+           16 |            16 |       16 | net,styleforum)
+           16 |            16 |       16 | org,wikipedia,fr)
+           16 |            16 |       16 | org,dmoz)
+           16 |            16 |       16 | com,mobygames)
+           16 |            16 |       16 | com,gamezone)
+           21 |            21 |       16 | com,mocpages)
+           17 |            17 |       16 | edu,umich,icpsr)
+           16 |            16 |       16 | com,rep-am)
+           16 |            16 |       16 | com,defensereview)
+           18 |            18 |       16 | com,snagajob)
+           16 |            16 |       16 | net,airliners)
+           16 |            16 |       16 | net,mangareader)
+           18 |            18 |       16 | com,godlikeproductions)
+           16 |            16 |       16 | com,neimanmarcus)
+           20 |            20 |       16 | fr,insee,recherche-naf)
+           16 |            16 |       16 | com,gawker)
+       (100 rows)
        ```
 
 1. Take a screenshot of an interesting search result.
